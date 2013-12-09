@@ -144,7 +144,7 @@ static BOOL g_debugEnabled = NO;
             case SKPaymentTransactionStatePurchased:
 				state = @"PaymentTransactionStatePurchased";
 				transactionIdentifier = transaction.transactionIdentifier;
-				// transactionReceipt = [[transaction transactionReceipt] base64EncodedString];
+				transactionReceipt = [[transaction transactionReceipt] base64EncodedString];
 				productId = transaction.payment.productIdentifier;
                 break;
 
@@ -158,7 +158,7 @@ static BOOL g_debugEnabled = NO;
 			case SKPaymentTransactionStateRestored:
 				state = @"PaymentTransactionStateRestored";
 				transactionIdentifier = transaction.originalTransaction.transactionIdentifier;
-				// transactionReceipt = [[transaction transactionReceipt] base64EncodedString];
+				transactionReceipt = [[transaction transactionReceipt] base64EncodedString];
 				productId = transaction.originalTransaction.payment.productIdentifier;
                 break;
 
@@ -173,7 +173,7 @@ static BOOL g_debugEnabled = NO;
                                  NILABLE(error),
                                  NILABLE(transactionIdentifier),
                                  NILABLE(productId),
-                                 nil, // NILABLE(transactionReceipt),
+                                 NILABLE(transactionReceipt),
                                  nil];
 		NSString *js = [NSString
             stringWithFormat:@"window.storekit.updatedTransactionCallback.apply(window.storekit, %@)",

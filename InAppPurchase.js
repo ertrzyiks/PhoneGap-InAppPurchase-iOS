@@ -148,7 +148,7 @@ InAppPurchase.prototype.load = function (productIds, callback) {
 
 /* This is called from native.*/
 InAppPurchase.prototype.updatedTransactionCallback = function (state, errorCode, errorText, transactionIdentifier, productId, transactionReceipt) {
-    transactionReceipt = 'NO RECEIPT';
+    transactionReceipt = transactionReceipt || 'NO RECEIPT';
 	switch(state) {
 		case "PaymentTransactionStatePurchased":
             this.options.purchase(transactionIdentifier, productId, transactionReceipt);
